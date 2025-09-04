@@ -572,8 +572,25 @@ col_img.image(float_image_path, use_container_width=False, width=150)
 with col_body:
     # st.title("CSV to Document Converter")
 
-    # File uploader
-    uploaded_file = st.file_uploader("Choose a CSV file", type="csv", key="upload")
+    # Create columns for file uploader and example button
+    upload_col, example_col = st.columns([7, 1])
+    
+    with upload_col:
+        # File uploader
+        uploaded_file = st.file_uploader("Choose a CSV file", help="Upload a CSV file from your computer. Your file is deleted when your session ends. However, if you have sensitive data, I recommend you clone https://github.com/lelandg/CSV2Doc and follow instructions to run locally on your machine. It's cross-platform and requires Python (3.6+) by using the included requirements.txt.", type="csv", key="upload")
+    
+    with example_col:
+        # Add some vertical spacing to align with the file uploader
+        st.markdown("<div style='margin-top: 28px;'></div>", unsafe_allow_html=True)
+        # Add link to load example CSV with nowrap style
+        if st.button("📊 Load Emojis.csv 😊", help="Load example data"):
+            example_path = os.path.join(os.path.dirname(__file__), "emojis.csv")
+            if os.path.exists(example_path):
+                with open(example_path, "rb") as f:
+                    uploaded_file = io.BytesIO(f.read())
+                    uploaded_file.name = "emojis.csv"
+            else:
+                st.error("Example file not found. Please ensure emojis.csv exists in the application directory.")
 
     if uploaded_file is not None:
         try:
@@ -885,12 +902,7 @@ with col_body:
                     )
         break
 
-    # Footer
-    st.markdown("---")
-    st.markdown("CSV to Document Converter | Created with Streamlit")
-    st.markdown("This app allows you to upload a CSV file and convert it to different document formats. You can also group the data by a column to create separate tables for each unique value.")
-    st.markdown("**Note:** Make sure to upload a valid CSV file.")
-    st.markdown("**Disclaimer:** This app is for educational purposes only. Please ensure you have the right to use any data you upload.")
+
     # ─────────────────────────────────────────────────────────────────────────────
     #  CONVERT A DATAFRAME TO GROUPED HTML
     # ─────────────────────────────────────────────────────────────────────────────
@@ -1020,3 +1032,56 @@ with col_body:
     except Exception as e:
         st.error(f"Error handling session cache: {e}")
         st.markdown(f"**Exception:**<br>{traceback.format_exc().replace('\n', '<br>')}", unsafe_allow_html=True)
+
+    # Footer (fixed at bottom)
+    st.markdown(
+        """
+        <style>
+        /* Reserve space so content doesn't sit underneath the fixed footer */
+        .stApp { padding-bottom: 96px; }
+        .main .block-container { padding-bottom: 0.5rem; }
+
+        /* Fixed footer bar */
+        #fixed-footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: var(--background-color, #ffffffcc);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding: 10px 16px;
+            z-index: 1000;
+        }
+        #fixed-footer .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: inherit;
+        }
+        #fixed-footer a { text-decoration: none; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        """
+        <div id="fixed-footer">
+          <div class="footer-inner">
+            <strong>CSV to Document Converter</strong> · Created with Streamlit<br/>
+            <small>
+              This app allows you to upload a CSV file and convert it to different document formats.
+              You can also group the data by a column to create separate tables for each unique value.
+              <br/>
+              Note: Make sure to upload a valid CSV file.
+              Disclaimer: This app is for educational purposes only. Please ensure you have the right to use any data you upload.
+              Prefer to run it locally? Visit the GitHub repo
+              <a href="https://github.com/lelandg/CSV2Doc" target="_blank" rel="noopener">lelandg/CSV2Doc</a>.
+            </small>
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
