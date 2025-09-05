@@ -182,3 +182,4 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 uploaded_files_history.json
+.claude/settings.local.json
