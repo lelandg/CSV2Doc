@@ -1,3 +1,15 @@
+-c requirements-security.txt
 streamlit>=1.22.0
 pandas>=1.5.0
 python-docx>=0.8.11
+
+# Transitive security floors. These are declared here as well as in the
+# constraints file above because osv-scanner's resolver does not apply pip
+# constraints: without these lines it resolves the minimum version that
+# satisfies streamlit's own loose floors (pillow 9.5.0, 84 advisories).
+# Versions match requirements-security.txt exactly -- no conflict.
+pillow>=13.0.0
+anyio>=4.14.2
+certifi>=2026.10.18
+idna>=3.15
+h11>=0.16.0
