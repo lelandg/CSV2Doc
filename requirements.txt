@@ -1,3 +1,18 @@
+# Requires Python 3.11 or newer.
+# Raised from Python 3.7: the security floors below (notably pillow>=13.0.0)
+# have no advisory-free release supporting the older interpreters, so the
+# documented install would have failed there.
 streamlit>=1.22.0
 pandas>=1.5.0
 python-docx>=0.8.11
+
+# Transitive security floors, declared directly here because osv-scanner's
+# resolver does not apply pip constraints (`-c` is ignored) and pip itself
+# resolves to the HIGHEST satisfying version, so a constraints file bound
+# neither. Without these lines the resolver picks the minimum satisfying
+# version of each transitive dependency.
+pillow>=13.0.0
+anyio>=4.14.2
+certifi>=2026.10.18
+idna>=3.15
+h11>=0.16.0
