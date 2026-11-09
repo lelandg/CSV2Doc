@@ -34,7 +34,7 @@ Hosted app: https://csv2doc.streamlit.app/
 
 ## Technologies Used
 
-- Python 3.7+
+- Python 3.11+
 - Streamlit - Web application framework
 - Pandas - Data manipulation and analysis
 - python-docx - Creating and manipulating DOCX files
