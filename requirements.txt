@@ -2,8 +2,8 @@
 # Raised from Python 3.7: the security floors below (notably pillow>=13.0.0)
 # have no advisory-free release supporting the older interpreters, so the
 # documented install would have failed there.
-streamlit>=1.22.0
-pandas>=1.5.0
+streamlit>=1.66.1
+pandas>=1.5.3
 python-docx>=0.8.11
 
 # Transitive security floors, declared directly here because osv-scanner's
@@ -12,7 +12,7 @@ python-docx>=0.8.11
 # neither. Without these lines the resolver picks the minimum satisfying
 # version of each transitive dependency.
 pillow>=13.0.0
-anyio>=4.14.2
-certifi>=2026.10.18
-idna>=3.15
+anyio>=4.16.0
+certifi>=2026.10.23
+idna>=3.20
 h11>=0.16.0
