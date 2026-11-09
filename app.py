@@ -577,7 +577,7 @@ with col_body:
     
     with upload_col:
         # File uploader
-        uploaded_file = st.file_uploader("Choose a CSV file", help="Upload a CSV file from your computer. Your file is deleted when your session ends. However, if you have sensitive data, I recommend you clone https://github.com/lelandg/CSV2Doc and follow instructions to run locally on your machine. It's cross-platform and requires Python (3.6+) by using the included requirements.txt.", type="csv", key="upload")
+        uploaded_file = st.file_uploader("Choose a CSV file", help="Upload a CSV file from your computer. Your file is deleted when your session ends. However, if you have sensitive data, I recommend you clone https://github.com/lelandg/CSV2Doc and follow instructions to run locally on your machine. It's cross-platform and requires Python (3.11+) by using the included requirements.txt.", type="csv", key="upload")
     
     with example_col:
         # Add some vertical spacing to align with the file uploader
