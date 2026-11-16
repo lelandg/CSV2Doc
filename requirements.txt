@@ -2,7 +2,7 @@
 # Raised from Python 3.7: the security floors below (notably pillow>=13.0.0)
 # have no advisory-free release supporting the older interpreters, so the
 # documented install would have failed there.
-streamlit>=1.66.1
+streamlit>=1.67.0
 pandas>=1.5.3
 python-docx>=0.8.11
 
