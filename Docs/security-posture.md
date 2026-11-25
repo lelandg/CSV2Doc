@@ -1,8 +1,8 @@
 # Security posture -- pinned actions and Dependabot switches
 
 Reference for the "Scanning & review" section of `AGENTS.md`. Read it before
-editing `.github/**`. The bullets below were moved here from `AGENTS.md` word
-for word.
+editing `.github/**`. The bullets below were moved here from `AGENTS.md`; the
+only change since is the corrected check for `automated-security-fixes`.
 
 - SHA-pinned actions get **no Dependabot alerts**: GitHub generates them only
   for actions on semantic versions (docs: "About Dependabot alerts"). So no
@@ -29,7 +29,12 @@ for word.
   204 = on, 404 = off, 403 = the token has no admin on this repo, which is
   NOT the same as off. Enable: same path with `-X PUT`.
 - Alerts and automatic security **updates** are two switches, not one. Alerts
-  only report; the half that opens PRs is `automated-security-fixes` (same API
-  shape). It is deliberately OFF here: this repo took its first scan with a
+  only report; the half that opens PRs is `automated-security-fixes`. Its GET
+  does NOT answer like the alerts one: it returns 200 with a JSON body whether
+  the switch is on or off, so the 204/404 status mapping above does not apply.
+  Read the body, which also shows whether updates are paused:
+  `gh api repos/lelandg/CSV2Doc/automated-security-fixes --jq '{enabled, paused}'`
+  Enable or disable: same path with `-X PUT` or `-X DELETE`.
+  It is deliberately OFF here: this repo took its first scan with a
   pre-existing advisory backlog, and enabling it would open that backlog as
   PRs at once. Turn it on per repo once the backlog is cleared.

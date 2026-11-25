@@ -49,8 +49,8 @@ restated here; read it there. What is specific to this repo:
   the `no-ai-review` label (on the PR when it opens) and for Dependabot and
   Renovate PRs. A draft marked ready with no new push is not reliably
   reviewed: comment `@coderabbitai full review` (not `review`, which reads
-  only commits pushed since its last review). The list is additive, not closed: nothing named here replaces
-  a council member. Why a green check does not mean "no findings" is in
+  only commits pushed since its last review). The list is additive, not
+  closed: nothing named here replaces a council member. Why a green check does not mean "no findings" is in
   `~/.claude/instructions/pr-review-automation.md`; how to tell a finished
   review from a skipped or rate-limited one (the check run's output title) is
   in the comments of `.coderabbit.yaml`. Neither is repeated here.
