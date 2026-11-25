@@ -34,8 +34,9 @@ restated here; read it there. What is specific to this repo:
 - CI runs `gitleaks`, `osv-scanner` and `zizmor` on every PR, every push to `main`, and
   weekly (`.github/workflows/security.yml`). There is no committed
   `package-lock.json`, so the npm jobs do not apply.
-- Dependabot config is committed, with grouped security PRs (`.github/dependabot.yml`)
-  for `requirements.txt` and the pinned GitHub Actions.
+- Dependabot config is committed (`.github/dependabot.yml`): grouped security
+  PRs for `requirements.txt`, and grouped minor and patch version updates for
+  the pinned GitHub Actions, which get no security PRs (next bullet).
 - Pinned actions get no Dependabot alerts; the `zizmor` job is their
   detection, so pin released version tags only. `automated-security-fixes` is
   deliberately off. Pinned-action detection, the Dependabot alert and auto-fix
